@@ -42,7 +42,6 @@ import org.apache.hadoop.hbase.fs.FsContext;
 import org.apache.hadoop.hbase.fs.MasterFileSystem;
 import org.apache.hadoop.hbase.master.AssignmentManager;
 import org.apache.hadoop.hbase.master.MasterCoprocessorHost;
-import org.apache.hadoop.hbase.master.MasterFileSystem;
 import org.apache.hadoop.hbase.procedure2.StateMachineProcedure;
 import org.apache.hadoop.hbase.protobuf.ProtobufUtil;
 import org.apache.hadoop.hbase.protobuf.generated.HBaseProtos;
@@ -285,6 +284,7 @@ public class CreateTableProcedure
           final List<HRegionInfo> newRegions) throws IOException {
         HRegionInfo[] regions = newRegions != null ?
           newRegions.toArray(new HRegionInfo[newRegions.size()]) : null;
+        //TODO this should be RegionStorage
         return ModifyRegionUtils.createRegions(env.getMasterConfiguration(),
             tableRootDir, hTableDescriptor, regions, null);
       }
